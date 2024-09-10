@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block title %}
+| Post
+{% endblock %}
+
+{% block content %}
+
+<h1>Post</h1>
+
+{% if user.is_authenticated %}
+
+<form action="" method="post">
+    {% csrf_token %}
+
+
+    <div class="form-block">
+         
+         {% csrf_token %}
+         <label for="{{ forma.content.id_for_label }}">
+              <h2>Post What Is On Your Mind :</h2>
+         </label>
+         {{ forma.content }}
+         <button type="submit">Post</button>
+    </div>
+
+</form>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+     form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1em;
+    background: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Stilizimi i div-it për çdo blok të formës */
+.form-block {
+    margin-bottom: 1em;
+}
+
+/* Stilizimi i etiketave */
+.form-label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+/* Stilizimi i fushave të formës */
+form input, 
+form textarea, 
+form select {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Përdorim për të siguruar që padding dhe border janë përfshirë në përmasat totale */
+}
+
+/* Stilizimi i gabimeve të formës */
+.form-errors {
+    color: red;
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5em;
+}
+
+.form-errors li {
+    margin-bottom: 0.5em;
+}
+
+/* Stilizimi i butonit */
+.form-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75em 1.5em;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}
+
+h2{
+     color: #0056b3;
+     font-weight: lighter;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+</style>
+
+{% endblock %}

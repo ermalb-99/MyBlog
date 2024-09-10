@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+<form action="" method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+
+
+     <div class="form-block">
+          
+          {% csrf_token %}
+          <label for="{{ forma.content.id_for_label }}">
+               <h2>Post What Is On Your Mind :</h2>
+          </label>
+          {{ forma.content }}
+          {{forma.image}}
+          <button type="submit">Post</button>
+     </div>
+     
+
+</form>
+
+
+<div class="container">
+{% for tweet in tweets %}
+
+     <div class="tweet-box">
+          
+          <h3 class="authorbig" >{{tweet.author.first_name | title}}
+               {{tweet.author.last_name | title}}
+               
+               <h5 class="author">@{{tweet.author.username}}</h5>
+          </h3>
+          
+          <span style="display: flex;">
+               <h2>My blog</h2>
+               
+          </span>
+     
+     
+          <div class="content">
+               
+               <h2 style="background-color: white; height:fit-content;">
+                    <h6>Posted :</h6>
+                    <br>
+                    <h2 style="margin: 1vw; margin-bottom: 2vh;">{{tweet.content}}</h2>
+                    {% if tweet.image %}
+                    <img src="{{ tweet.image }}" alt="image" >
+                    {% endif %}
+          </div>
+          <br>
+
+
+          <div class="buttons">
+
+               
+               
+               
+
+
+
+               <button>Like</button>
+               <button>Comment</button>
+               <button>Retweet</button>
+               {% if user.is_authenticated %}
+               {% if tweet.author == user or user.is_superuser%}
+               <br>
+               <br><br>
+               <form action="{% url 'delete' tweet.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+               </form>
+               
+
+               
+
+
+               {% endif %}
+               {% endif %}
+          </div>
+
+
+          
+          <div class="created_at">
+               <h5 style="color: rgba(0, 0, 0, 0.416);">{{ tweet.date_created }}</h5>
+               {{form.likes}}
+          </div>
+     
+     </div>
+     
+</div>
+
+
+{% endfor %}
+
+
+
+
+<style>
+     .banner{
+          width: 30vw;
+          border: 1px solid red;
+     
+     }
+     body{
+          background-color: #1da0f2;
+     }
+     .authorbig{
+          margin-bottom: 0px;font-size: 2vw;color:#0056b3; font-family:Verdana, Geneva, Tahoma, sans-serif;
+     }
+     .tweet-box{
+          width: 80vw;
+          height: max-content;
+          margin-left: auto;
+          margin-right: auto;
+          border-radius: 2vw;
+          border: 1px solid #1da0f22f;
+          padding: 2vw;
+          margin-top: 2vh;
+          background-color: whitesmoke;
+          
+     }
+     
+     .content{
+          margin-top: 5vh;
+          width: 100%;
+          height: max-content;
+          border-radius: 1vw;
+          background-color:#1da0f210;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+     }
+     .container{
+          
+          height:fit-content
+     }
+
+     .buttons button {
+          border: 0px;
+          background-color: #1da0f2;
+          color: white;
+          padding: 5px;
+          border-radius: 1vh;
+          padding-left: 1vw;
+          padding-right: 1vw;
+          
+     }
+
+     
+     form {
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 1em;
+    background: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Stilizimi i div-it për çdo blok të formës */
+.form-block {
+    margin-bottom: 1em;
+}
+
+/* Stilizimi i etiketave */
+.form-label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+/* Stilizimi i fushave të formës */
+form input, 
+form textarea, 
+form select {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Përdorim për të siguruar që padding dhe border janë përfshirë në përmasat totale */
+}
+
+/* Stilizimi i gabimeve të formës */
+.form-errors {
+    color: red;
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5em;
+}
+
+.form-errors li {
+    margin-bottom: 0.5em;
+}
+
+/* Stilizimi i butonit */
+.form-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75em 1.5em;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}
+
+h2{
+     color: #0056b3;
+     font-weight: lighter;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+
+     
+</style>
+{% endblock %}background

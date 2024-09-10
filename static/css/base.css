@@ -1,0 +1,40 @@
+body{
+     margin: 0px;
+     padding: 0px;
+     box-sizing: border-box;
+}
+
+header{
+     background-color: #1DA1F2;
+     display: flex;
+     height: 10vh;
+}
+
+header h2 img{
+     height: 100%;
+     
+}
+header h2{
+     color: white;
+     display: flex;
+}
+
+header ul{
+     display: inline;
+     margin-right: auto;
+     margin-left: auto;
+     margin-top: auto;
+     margin-bottom: auto;
+}
+
+header ul li {
+     display: inline-block;
+     margin-right: 2vw;
+     color: whitesmoke;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header ul li a {
+     color: whitesmoke;
+     text-decoration: none;
+}

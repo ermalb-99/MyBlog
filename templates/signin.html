@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+| Login
+{% endblock %}
+
+
+{% block content %}
+
+<div class="parathenje">
+     <h3>Please Log in to Your Account</h3>
+<p>Securely log in to access your personalized content and protect your account information. <br> Your credentials are safe with us.</p>
+</div>
+
+
+<form action="" method="post">
+     {% csrf_token %}
+     {{form.as_p}}
+     <button type="submit">Log in</button>
+     <br>
+     Not Registered?
+     <br>
+     <a href="{% url 'register' %}">Register Here</a>
+</form>
+
+
+
+
+<style>
+     .parathenje{
+          
+          text-align: center;
+          margin-top: 10vh;
+          margin-bottom: 10vh;
+     }
+
+     .parathenje p{
+          color: rgba(0, 0, 0, 0.545);
+     }
+
+     .parathenje h3{
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+     }
+
+
+          form {
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 5px;
+    width: 30vw;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 2vw;
+    text-align: center;
+
+}
+
+.legend {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.form-block {
+    margin-bottom: 1em;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.647);
+}
+
+input {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+</style>
+{% endblock %}

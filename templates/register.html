@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}
+| Register
+{% endblock %}
+
+{% block content %}
+
+<p style="font-family: Verdana, Geneva, Tahoma, sans-serif;
+line-height: 8vh;margin-left:10vw;margin-right: 10vw;text-align: center;margin-top: 10vh;font-weight: bolder;; color:#1DA1F2 ;">"Join millions of voices around the globe. Whether you’re here to connect, share your thoughts, or simply see what’s happening in the world, it all starts with a single step. Sign up today, dive into the conversation, and be a part of the ever-evolving buzz. Your voice matters—let it be heard!"</p>
+
+<style>
+     form {
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 5px;
+    width: 30vw;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 2vw;
+
+}
+
+.legend {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+.form-block {
+    margin-bottom: 1em;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.647);
+}
+
+input {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+</style>
+
+<form action="" method="post">
+
+     <div class="form-block">
+     <!-- Username -->
+     {% csrf_token %}
+     <label for="{{ form.username.id_for_label }}">
+          Username :
+     </label>
+     {{ form.username }}
+     </div>
+
+     <br><br>
+
+     <div class="form-block">
+     <!-- FirstName -->
+     {% csrf_token %}
+     <label for="{{ form.first_name.id_for_label }}">
+          First Name :
+     </label>
+     {{ form.first_name }}
+     </div>
+
+     <br><br>
+     <div class="form-block">
+     <!-- Last Name -->
+     {% csrf_token %}
+     <label for="{{ form.last_name.id_for_label }}">
+          Last Name :
+     </label>
+     {{ form.last_name }}
+     </div>
+
+     <br><br>
+
+
+     <div class="form-block">
+     <!-- Email -->
+     {% csrf_token %}
+     <label for="{{ form.email.id_for_label }}">
+          Email :
+     </label>
+     {{ form.email }}
+     </div>
+
+     <br><br>
+
+     <div class="form-block">
+     <!-- password1 -->
+     {% csrf_token %}
+     <label for="{{ form.password1.id_for_label }}">
+          Password :
+     </label>
+     {{ form.password1 }}
+     </div>
+
+     <br><br>
+
+     <div class="form-block">
+     <!-- password2 -->
+     {% csrf_token %}
+     <label for="{{ form.password2.id_for_label }}">
+          Re-enter password :
+     </label>
+     {{ form.password2 }}
+     </div>
+     <br><br>
+
+
+     <button type="submit">Register</button>
+     <p>Already have an account?</p>
+     
+     <a href="{% url 'signin' %}">Sign in</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title> Twitter{% block title %} {% endblock %}</title>
+     <link rel="icon" href="{% static 'tweeticon.png' %}">
+     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+
+     <header>
+          <h2>
+               
+               <h2>MyBlog</h2>
+               {% if not user.is_authenticated %}
+               <h2 style="margin-left: auto;
+               margin-right: auto;
+               margin-top: auto;
+               margin-bottom: auto;
+               font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Twitter
+               </h2>
+               {% endif %}
+          
+          {% if user.is_authenticated %}
+          <ul>
+               <li><a href="{% url 'home' %}">Home</a></li>
+               <li><a href="{% url 'post' %}">Post</a></li>
+               <li><a href="{% url 'profile' %}">Profile</a></li>
+               
+          </ul>
+          
+          {% if user.is_authenticated %}
+          <h2 style="margin-right: 2vw;
+          margin-top: auto;margin-bottom: auto; font-size: 1vw;"><a href="{% url 'profile' %}" style="color: white; text-decoration: none;">@{{user.username | capfirst }}</a></h2>
+          {% endif %}
+          
+               <button style="height: 3vh; margin-top: auto;
+               margin-bottom: auto;margin-right: 2vw;
+               border: none;background-color: rgb(164, 36, 14); color: white; padding: 10px; text-align: center; justify-content: center; ">
+                    <a href="{% url 'logout' %}" style="color: white; text-decoration: none;">Logout</a>
+
+               </button>
+          
+          
+          {% endif %}
+     </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     {% block content %}
+     {% endblock %}
+</body>
+</html>

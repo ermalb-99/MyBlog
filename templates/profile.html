@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}
+| Profile
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+{% if user.is_authenticated %}
+
+
+
+
+
+
+<div class="card">
+     {% if profile.profile_image %}
+     <img src="{{userprofile.profile_image.url }}" alt="">
+     {% endif %}
+     <h1>{{user.first_name | capfirst }} {{user.last_name | capfirst }}</h1>
+     <p class="title">@{{user.username}}</p>
+     <p>Harvard University</p>
+     <a href="#" class="icons"><i class="fa fa-dribbble"></i></a>
+     <a href="#"class="icons"><i class="fa fa-twitter"></i></a>
+     <a href="#"class="icons"><i class="fa fa-linkedin"></i></a>
+     <a href="#"class="icons"><i class="fa fa-facebook"></i></a>
+     <p><button class="contact-button">Contact</button></p>
+   </div>
+     
+<div class="card-posts">
+     
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 60vw;
+  /* margin: auto; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vh;
+  text-align: left;
+  padding: 5vh;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+.contact-button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+i{
+     font-size: larger;
+}
+
+.icons {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
