@@ -49,6 +49,7 @@ def home(request):
 
 @login_required
 def post(request):
+     user = request.user
      if request.method == 'POST':
           forma = forms.PostForm(request.POST,request.FILES)
           if forma.is_valid():
@@ -58,7 +59,7 @@ def post(request):
                return redirect('home')
      else :
           forma = forms.PostForm()
-     return render(request,'post.html',{'forma':forma})
+     return render(request,'post.html',{'forma':forma,'user':user})
 
 def register(request):
      return render(request,'register.html')
@@ -89,7 +90,8 @@ def delete_post(request,pk):
 
 @login_required    
 def profile(request):
-     return render(request,'profile.html')
+     tweets = models.TwitterPost.objects.all()
+     return render(request,'profile.html',{'tweets':tweets})
 
 @login_required
 def my_posts(request,author):
@@ -116,5 +118,34 @@ def my_posts(request,author):
 #     post.save()
 #     return redirect('home')
           
+@login_required
+def create_bio(request):
+     form = forms.CreateBioProfile()
+     if request.method == 'POST':
+          form = forms.CreateBioProfile(request.POST)
+          if form.is_valid():
+               form.save(commit=True)
+               return redirect('profile')
+          else:
+               forma = forms.CreateBioProfile()
+     return render(request,'profile.html',{
+          'form':form
+     })
 
-               
+def like_post(request):
+     user = request.user
+     if request.method == 'POST':
+          post_id = request.POST.get('post_id')
+          post_obj = models.TwitterPost.objects.get(id=post_id)
+          if user in post_obj.likes.all():
+               post_obj.likes.remove(user)
+          else:
+               post_obj.likes.add(user)
+          like, created = models.Like.objects.get_or_create(user=user,post_id=post_id)
+          if not created:
+               if like.value == 'Like':
+                    like.value = 'Unlike'
+               else:
+                    like.value = 'Like'
+          like.save()
+          return redirect('home')

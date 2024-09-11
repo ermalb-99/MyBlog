@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-
+<br><br><br><br><br>
 
 
 
@@ -54,18 +54,35 @@
           </div>
           <br>
 
-
+          
           <div class="buttons">
+               <strong>{{tweet.likes.all.count}} Likes</strong>|
+               Comment  |
+               Retweet  |
+               <br><br><br>
+
+
+
+               
+               <form action="{% url 'like-post' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{tweet.id}}">
+                    {% if user not in tweet.likes.all %}
+                    <button type="submit">Like</button>
+                    <button type="submit">Comment</button>
+                    <button type="submit">Retweet</button>
+                    {% else %}
+                    <button type="submit">Unlike</button>
+                    <button>Comment</button>
+                    <button>Retweet</button>
+                    {% endif %}
+                    
+               </form>
+               
+
 
                
                
-               
-
-
-
-               <button>Like</button>
-               <button>Comment</button>
-               <button>Retweet</button>
                {% if user.is_authenticated %}
                {% if tweet.author == user or user.is_superuser%}
                <br>
@@ -107,7 +124,7 @@
      
      }
      body{
-          background-color: #1da0f2;
+          background-color:#0056b3;;
      }
      .authorbig{
           margin-bottom: 0px;font-size: 2vw;color:#0056b3; font-family:Verdana, Geneva, Tahoma, sans-serif;

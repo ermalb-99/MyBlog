@@ -22,5 +22,5 @@ class SigninForm(AuthenticationForm):
 
 class CreateBioProfile(forms.ModelForm):
      class Meta:
-          model =models.UserProfile
+          model = models.UserProfile
           fields = ['bio',]
