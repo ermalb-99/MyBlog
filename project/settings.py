@@ -144,3 +144,12 @@ EMAIL_HOST_PASSWORD = 'your-email-password'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # 
+
+# Skadon sesioni pas 30 minutash (1800 sekonda)
+SESSION_COOKIE_AGE = 1800  # 30 minuta
+
+# Cakto që sesioni të mos rinovohet automatikisht për çdo kërkesë (nëse dëshiron)
+SESSION_SAVE_EVERY_REQUEST = False
+
+# Vendos që përdoruesi të bëhet logout kur mbyllet shfletuesi
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

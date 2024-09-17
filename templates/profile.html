@@ -11,7 +11,11 @@
 
 {% if user.is_authenticated %}
 
-
+<form style="height: 20vh;" action="{% url 'createbio' %}" method="post">
+     {% csrf_token %}
+     {{bioform.as_p}}
+     <button type="submit">Create</button>
+  </form>
 
 
 
@@ -53,7 +57,7 @@
                  <h2>My blog</h2>
                  
             </span>
-       
+            
        
             <div class="content">
                  

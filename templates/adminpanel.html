@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Users Admin
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+<style>
+     table {
+       font-family: arial, sans-serif;
+       border-collapse: collapse;
+       width: 100%;
+     }
+     
+     td, th {
+       border: 1px solid #dddddd;
+       text-align: left;
+       padding: 8px;
+     }
+     
+     tr:nth-child(even) {
+       background-color: #dddddd;
+     }
+
+     tr button{
+          border: none;
+          height: max-content;
+          width: max-content;
+          background-color: red;
+          padding: 1vw;
+          border-radius: 2vw;
+     }
+     </style>
+     </head>
+     <body>
+     
+     <h2>Users</h2>
+
+     <table>
+          <tr>
+               <th>ID</th>
+               <th>First Name</th>
+               <th>Last Name</th>
+               <th>Username</th>
+               <th>Email</th>
+               <th></th>
+             </tr>
+{% for user in users %}
+             <tr>
+               <th>{{forloop.counter | title }}</th>
+               <th>{{user.first_name | title }}</th>
+               <th>{{user.last_name | title }}</th>
+               <th>{{user.username}}</th>
+               <th>{{user.email | lower }}</th>
+               <th><button>Delete</button></th>
+             </tr>
+{% endfor %}
+
+     </table>
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

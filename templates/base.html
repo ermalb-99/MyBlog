@@ -8,6 +8,7 @@
      <link rel="icon" href="{% static 'tweeticon.png' %}">
      <link rel="stylesheet" href="{% static 'css/base.css' %}">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     
 </head>
 <body>
 
@@ -22,7 +23,7 @@
                margin-top: auto;
                margin-bottom: auto;
                font-family: Verdana, Geneva, Tahoma, sans-serif;">
-                    Twitter
+                    MyBlog
                </h2>
                {% endif %}
           
@@ -31,6 +32,9 @@
                <li><a href="{% url 'home' %}">Home</a></li>
                <li><a href="{% url 'post' %}">Post</a></li>
                <li><a href="{% url 'profile' %}">Profile</a></li>
+               {% if user.is_superuser %}
+               <li><a href="{% url 'adminshowusers' %}">Users</a></li>
+               {% endif %}
                
           </ul>
           

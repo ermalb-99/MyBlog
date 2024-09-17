@@ -24,3 +24,6 @@ class CreateBioProfile(forms.ModelForm):
      class Meta:
           model = models.UserProfile
           fields = ['bio',]
+          widgets = {
+               'content':forms.Textarea(attrs={'placeholder':"What's happening ?"})
+          }

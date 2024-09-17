@@ -7,10 +7,19 @@ from django.core.mail import send_mail
 
 # Create your views here.
 
+# ADMIN PANEL
+@login_required(login_url='signin')
+def show_users_to_admin(request):
+     users = models.User.objects.all()
+     msg = 'No Users'
+     if users is None or users.count()== 0:
+          return render(request,'adminpanel.html',{'msg':msg})
+     return render(request,'adminpanel.html',{'users':users})
+
+
+
 
 # AUTH
-
-
 # SIGNUP
 def signin_view(request):
      if request.method == 'POST':
@@ -23,12 +32,12 @@ def signin_view(request):
           form = forms.SigninForm()
      return render(request,'signin.html',{'form':form})
 
-             
+@login_required(login_url='signin')            
 def logout_view(request):
      logout(request)
      return redirect('signin')
 
-@login_required
+@login_required(login_url='signin')  
 def home(request):
      tweets = models.TwitterPost.objects.all().order_by('-date_created')
      forma = forms.PostForm()
@@ -47,7 +56,7 @@ def home(request):
      })
 
 
-@login_required
+@login_required(login_url='signin')  
 def post(request):
      user = request.user
      if request.method == 'POST':
@@ -61,9 +70,9 @@ def post(request):
           forma = forms.PostForm()
      return render(request,'post.html',{'forma':forma,'user':user})
 
-def register(request):
-     return render(request,'register.html')
+ 
 
+ 
 def register_form(request):
      if request.method == 'POST':
           form = forms.CreateUser(request.POST)
@@ -80,7 +89,7 @@ def register_form(request):
           form = forms.CreateUser()
      return render(request,'register.html',{'form':form})
 
-
+@login_required(login_url='signin')   
 def delete_post(request,pk):
      post = get_object_or_404(models.TwitterPost,pk=pk)
      if request.method == 'POST':
@@ -88,12 +97,12 @@ def delete_post(request,pk):
           return redirect('home')
      return render(request,'home.html',{'post':post})
 
-@login_required    
+@login_required(login_url='signin') 
 def profile(request):
      tweets = models.TwitterPost.objects.all()
      return render(request,'profile.html',{'tweets':tweets})
 
-@login_required
+@login_required(login_url='signin')
 def my_posts(request,author):
      posts = get_object_or_404(models.TwitterPost,author)
      return render(request,'profile.html',{'posts':posts})
@@ -118,20 +127,20 @@ def my_posts(request,author):
 #     post.save()
 #     return redirect('home')
           
-@login_required
-def create_bio(request):
-     form = forms.CreateBioProfile()
+@login_required(login_url='signin')
+def createbio(request):
      if request.method == 'POST':
-          form = forms.CreateBioProfile(request.POST)
-          if form.is_valid():
-               form.save(commit=True)
+          bioform = forms.CreateBioProfile(request.POST)
+          if bioform.is_valid():
+               bioform.save(commit=True)
                return redirect('profile')
           else:
-               forma = forms.CreateBioProfile()
+               bioform = forms.CreateBioProfile()
      return render(request,'profile.html',{
-          'form':form
+          'bioform':bioform
      })
 
+@login_required(login_url='signin')
 def like_post(request):
      user = request.user
      if request.method == 'POST':
