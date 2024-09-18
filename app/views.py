@@ -100,7 +100,27 @@ def delete_post(request,pk):
 @login_required(login_url='signin') 
 def profile(request):
      tweets = models.TwitterPost.objects.all()
-     return render(request,'profile.html',{'tweets':tweets})
+     form = forms.BioCreation
+     user = request.user 
+     if request.method == 'POST':
+          form = forms.BioCreation(request.POST)
+          if form.is_valid():
+               form.save(commit=True)
+               return render('profile')
+     else:
+          form = forms.BioCreation()
+     return render(request,'profile.html',{'tweets':tweets,'form':form})
+
+
+
+
+
+
+# @login_required(login_url='signin')
+# def create_bio(request):
+     
+     
+#      return render(request,'profile.html',{})
 
 @login_required(login_url='signin')
 def my_posts(request,author):
@@ -127,18 +147,22 @@ def my_posts(request,author):
 #     post.save()
 #     return redirect('home')
           
-@login_required(login_url='signin')
-def createbio(request):
-     if request.method == 'POST':
-          bioform = forms.CreateBioProfile(request.POST)
-          if bioform.is_valid():
-               bioform.save(commit=True)
-               return redirect('profile')
-          else:
-               bioform = forms.CreateBioProfile()
-     return render(request,'profile.html',{
-          'bioform':bioform
-     })
+# @login_required(login_url='signin')
+# def createbio(request):
+#      if request.method == 'POST':
+#           bioform = forms.CreateBioProfile(request.POST)
+#           if bioform.is_valid():
+#                bioform.save(commit=True)
+#                return redirect('profile')
+#           else:
+#                bioform = forms.CreateBioProfile()
+#      return render(request,'profile.html',{
+#           'bioform':bioform
+#      })
+
+
+
+
 
 @login_required(login_url='signin')
 def like_post(request):

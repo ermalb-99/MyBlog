@@ -11,9 +11,12 @@
 
 {% if user.is_authenticated %}
 
-<form style="height: 20vh;" action="{% url 'createbio' %}" method="post">
+
+<br><br><br><br><br>
+
+<form style="height: max-content;" action="{% url 'createbio' %}" method="post">
      {% csrf_token %}
-     {{bioform.as_p}}
+     {{form.as_p}}
      <button type="submit">Create</button>
   </form>
 

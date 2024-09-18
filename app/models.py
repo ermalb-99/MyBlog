@@ -10,6 +10,8 @@ class UserProfile(models.Model):
           return self.user.username.capitalize()
      
 
+     
+
 
 
 class TwitterPost(models.Model):
@@ -40,3 +42,7 @@ class Like(models.Model):
 
 
 
+class Bio(models.Model):
+     post = models.OneToOneField(TwitterPost,on_delete=models.CASCADE,null=False,blank=False)
+     user = models.OneToOneField(User,on_delete=models.CASCADE,null=False,blank=False)
+     content = models.TextField(max_length=300,blank=False,null=False)

@@ -23,7 +23,17 @@ class SigninForm(AuthenticationForm):
 class CreateBioProfile(forms.ModelForm):
      class Meta:
           model = models.UserProfile
-          fields = ['bio',]
+          fields = '__all__'
           widgets = {
                'content':forms.Textarea(attrs={'placeholder':"What's happening ?"})
           }
+          
+
+class BioCreation(forms.ModelForm):
+     class Meta:
+          model = models.Bio
+          fields = ['content']
+          widgets = {
+               'content':forms.Textarea(attrs={'placeholder':"What's happening ?"})
+          }
+          
